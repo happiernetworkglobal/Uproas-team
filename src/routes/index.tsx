@@ -25,7 +25,8 @@ const CTA = ({ label = "Claim your free 30-minute strategy session" }: { label?:
 
 function FacebookAgencyPage() {
   const [testimonial, setTestimonial] = useState(0);
-  const active = testimonials[testimonial];
+  const active = testimonials[testimonial] ?? testimonials[0];
+  if (!active) return null;
   return <div id="top" className="bg-paper text-ink">
     <SiteHeader />
     <main>
