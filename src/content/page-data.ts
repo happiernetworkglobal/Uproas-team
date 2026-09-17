@@ -16,9 +16,9 @@ export const caseStudies = [
 ];
 
 export const testimonials = [
-  { name: "Selma Christofi", company: "Metricon", image: "imgi_168_testimonial-overlay-metricon-1200x673.jpg", quote: "The results speak for themselves. We found a team that understands growth and knows how to execute." },
-  { name: "Adam Hurdley", company: "Little Big Dairy", image: "imgi_176_testimonial-overlay-littlebigdairy-1200x673.jpg", quote: "Our campaigns became clearer, stronger and far more effective." },
-  { name: "Tye Spierings", company: "Let's Get Care", image: "imgi_184_testimonial-overlay-letsgetcare-1200x673.jpg", quote: "The strategy gave us the confidence to scale with control." },
+  { name: "Selma Christofi", company: "Metricon", image: "imgi_168_testimonial-overlay-metricon-1200x673.jpg" },
+  { name: "Adam Hurdley", company: "Little Big Dairy", image: "imgi_176_testimonial-overlay-littlebigdairy-1200x673.jpg" },
+  { name: "Tye Spierings", company: "Let's Get Care", image: "imgi_184_testimonial-overlay-letsgetcare-1200x673.jpg" },
 ];
 
 export const faqs = [
