@@ -1,24 +1,78 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ArrowDown, ArrowLeft, ArrowRight, Check, Play, Star } from "lucide-react";
+import { useState } from "react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import { LeadForm } from "@/components/site/LeadForm";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { A, caseStudies, faqs, testimonials } from "@/content/page-data";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({ meta: [
+    { title: "Facebook Advertising Agency | Uproas" },
+    { name: "description", content: "Scale your business with a battle-tested Facebook advertising strategy from Uproas." },
+    { property: "og:title", content: "Facebook Advertising Agency | Uproas" },
+    { property: "og:description", content: "Scale your business with a battle-tested Facebook advertising strategy from Uproas." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ]}),
+  component: FacebookAgencyPage,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+const P = ({ children, strong = false }: { children: React.ReactNode; strong?: boolean }) => <p className={strong ? "text-xl font-black sm:text-2xl" : "text-lg leading-8 sm:text-xl sm:leading-9"}>{children}</p>;
+const Title = ({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) => <h2 className={`display text-5xl sm:text-7xl lg:text-8xl ${dark ? "text-paper" : "text-ink"}`}>{children}</h2>;
+const CTA = ({ label = "Claim your free 30-minute strategy session" }: { label?: string }) => <Button asChild size="lg" className="h-auto min-h-14 whitespace-normal rounded-none px-6 py-4 text-center text-sm font-black uppercase sm:text-base"><a href="#contact">{label}<ArrowRight /></a></Button>;
+
+function FacebookAgencyPage() {
+  const [testimonial, setTestimonial] = useState(0);
+  const active = testimonials[testimonial];
+  return <div id="top" className="bg-paper text-ink">
+    <SiteHeader />
+    <main>
+      <section className="relative flex min-h-[82vh] items-center overflow-hidden bg-gradient-to-b from-muted to-background px-5 py-20 text-center paper-noise">
+        <div className="absolute -left-8 bottom-16 h-12 w-52 -rotate-12 bg-primary"/><div className="absolute -right-8 top-28 h-12 w-52 -rotate-12 bg-accent"/>
+        <div className="relative mx-auto max-w-5xl reveal">
+          <div className="mx-auto mb-7 inline-flex max-w-full items-center gap-2 rounded-full bg-ink px-4 py-2 text-xs font-bold uppercase text-paper"><span className="size-2 rounded-full bg-destructive"/>Breaking news <span className="hidden sm:inline">The most proven Facebook agency on earth reveals...</span></div>
+          <h1 className="display text-5xl sm:text-7xl lg:text-[6.75rem]">How To Get More Customers, Clients, And Sales Than You Can Possibly Handle With <span className="text-primary [text-shadow:3px_3px_0_var(--ink)]">Facebook Ads</span></h1>
+          <P>2.6 billion people are logging on to Facebook each and every month! Don’t miss out on tapping into this huge market of ‘itchy-to-buy’ prospects, who spend like sailors on leave!</P>
+          <div className="mt-8 flex flex-wrap justify-center gap-4"><CTA/><Button asChild variant="outline" size="lg" className="h-14 rounded-none border-ink bg-transparent font-black uppercase"><a href="#proof">See the proof <ArrowDown/></a></Button></div>
+        </div>
+      </section>
+
+      <section id="proof" className="px-5 py-20 sm:py-28"><div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[.8fr_1.2fr]">
+        <aside><p className="mb-4 text-sm font-black uppercase text-muted-foreground">Updated: 13th of September, 2026</p><Title>Dear Business Builder,</Title></aside>
+        <div className="space-y-6"><P>If you would like to know THE very best way to use Facebook ads to suck in sales like a vacuum cleaner on steroids…at MASSIVE scale.</P><P>Then this will be one of the most exciting messages you’ll ever read.</P><P>Here’s why:</P><P strong>Over the last 24 months, our team has spent over $15 million dollars on Facebook Ads…</P><P>Here’s the proof:</P><img src={`${A}imgi_91_facebook-ads-more-proof-1200x3357.jpg`} alt="Facebook advertising campaign results" className="max-h-[760px] w-full border-8 border-ink object-cover object-top" loading="lazy"/><P strong>And we’ve done this in over 1184 different industries and niches.</P><P>Using that $15 million to help generate our clients $10.2 billion in sales.</P><P>All with ads.</P></div>
+      </div></section>
+
+      <section className="bg-ink px-5 py-24 text-paper"><div className="mx-auto max-w-4xl space-y-6"><Title dark>Not Theoretically What Works.</Title><P>From some YouTube tutorials and courses.</P><P>Or from some guru with a bunch of “theories” pretending to be an “expert”.</P><P strong>No.</P><P>I’m talkin’ about NO-BS, battle-tested strategies from the frontlines of turning advertising into profit.</P><P>From a team who knows what it means to have to make ad campaigns profitable – because they’ve got a payroll to meet.</P><div className="mt-10 border-l-8 border-primary bg-paper/5 p-8"><P strong>We want them to take prisoners and come home, so there’s more of them.</P></div></div></section>
+
+      <section className="px-5 py-24"><div className="mx-auto max-w-5xl"><p className="mb-4 font-black uppercase text-destructive">Does this sound familiar?</p><Title>Every Time You Scale Your Winning Campaigns They Fall Apart</Title><div className="mt-12 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">{["ROAS drops through the floor…","CPLs and CPAs skyrocket.","Fewer money soldiers return to camp.","You can’t hit your growth goals."].map((x,i)=><div key={x} className="bg-background p-7"><span className="display text-5xl text-primary">0{i+1}</span><p className="mt-4 text-xl font-black">{x}</p></div>)}</div><div className="mx-auto mt-14 max-w-3xl space-y-5"><P>All this makes you wanna tear your hair out and throw your MacBook out the window.</P><P>So you pull back on ad spend because your ROI is burning quicker than a crop fire.</P><P strong>Well, we’ve got some good news for you…</P><P>We’re going to reveal, the fastest, simplest, and most certain way, for you to get as many customers as possible using Facebook ads.</P></div></div></section>
+
+      <section className="overflow-hidden bg-primary py-8"><div className="marquee-track flex gap-10 pr-10 text-2xl font-black uppercase"><span>Lower CPMs</span><span>Lower CPCs</span><span>Lower CPAs</span><span>Sky-high ROI</span><span>Better Buyers</span><span>Lower CPMs</span><span>Lower CPCs</span><span>Lower CPAs</span><span>Sky-high ROI</span><span>Better Buyers</span></div></section>
+
+      <section id="strategy" className="bg-ink px-5 py-24 text-paper"><div className="mx-auto max-w-6xl"><p className="mb-5 font-black uppercase text-primary">The battle-tested process</p><Title dark>How To Scale Ad Spend To The Moon And Maintain Profitability</Title><div className="mt-16 grid gap-8 lg:grid-cols-2">
+        <article className="border border-paper/20 p-8 sm:p-12"><span className="display text-7xl text-primary">01</span><h3 className="display mt-5 text-4xl sm:text-5xl">Don’t Make Your Ads Look Like Ads</h3><div className="mt-6 space-y-4 text-lg leading-8 text-paper/75"><p>The first thing they focus on is the image.</p><p>They get all… “we have to make it POP!”</p><p>Instead, make them look like the content that people are ALREADY consuming on Facebook.</p><p className="font-black text-paper">This is how we ‘tickle the pixel’ and give the Zuck sunshine, rainbows and baby giggles…</p></div></article>
+        <article className="border border-paper/20 p-8 sm:p-12"><span className="display text-7xl text-primary">02</span><h3 className="display mt-5 text-4xl sm:text-5xl">Let Facebook’s Algorithm Work</h3><div className="mt-6 space-y-4 text-lg leading-8 text-paper/75"><p>Very smart.</p><p>Let it figure it out.</p><p>But most people suffocate the pixel.</p><p>Give them some room to work.</p><p className="font-black text-paper">Their algorithm knows where the buyers are hiding… And will find them for you.</p></div></article>
+        <article className="border border-paper/20 p-8 sm:p-12"><span className="display text-7xl text-primary">03</span><h3 className="display mt-5 text-4xl sm:text-5xl">Get The Words Right</h3><div className="mt-6 space-y-4 text-lg leading-8 text-paper/75"><p>It’s the secret sauce.</p><p>And it all comes down to the words you use in your ads.</p><p>Keep it simple and use short sentences.</p><p>One thought per sentence, so you’re easily understood.</p><p className="font-black text-paper">When you get the words right, everything is cheaper.</p></div></article>
+        <article className="border border-primary bg-primary p-8 text-primary-foreground sm:p-12"><span className="display text-7xl">04</span><h3 className="display mt-5 text-4xl sm:text-5xl">Win The War For Attention</h3><div className="mt-6 space-y-4 text-lg leading-8"><p>Focus on being different.</p><p>Unusual.</p><p>And as DRAMATIC as possible!</p><p>There’s a war for attention taking place.</p><p className="font-black">You gotta be polarising or you’ll be ignored.</p></div></article>
+      </div></div></section>
+
+      <section className="bg-background py-20"><p className="text-center text-sm font-black uppercase">Brand experience</p><img src={`${A}imgi_100_brand-experience-row-1.svg`} alt="Brands with Uproas experience" className="mt-8 w-full" loading="lazy"/><img src={`${A}imgi_101_brand-experience-row-2.svg`} alt="More brands with Uproas experience" className="mt-7 w-full" loading="lazy"/></section>
+
+      <section id="cases" className="px-5 py-24"><div className="mx-auto max-w-7xl"><p className="mb-4 font-black uppercase text-muted-foreground">Case studies</p><Title>Become Our Next <span className="text-primary">Success Story</span></Title><div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">{caseStudies.map(([name,image])=><article key={name} className="group relative aspect-[.76] overflow-hidden bg-muted"><img src={`${A}${image}`} alt={name} loading="lazy" className="size-full object-cover transition duration-500 group-hover:scale-105"/><div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/85 to-transparent p-5 pt-20 text-paper"><h3 className="display text-2xl sm:text-3xl">{name}</h3></div></article>)}</div></div></section>
+
+      <section className="bg-primary px-5 py-24"><div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2"><div><p className="mb-5 font-black uppercase">Get the free report</p><Title>12 Ways To Find Facebook Gold In 30 Days Or Less</Title><div className="mt-8 space-y-4 text-lg leading-8"><p>This report is 100% FREE and reveals 12 Secret Facebook Targeting Methods That Unlock “Hidden” Audiences & ‘Hyper Active Buyers’ in 30 Days or Less.</p><p>Get for free what has cost us millions of dollars in ad spend to find out.</p><p className="font-black">And these sales-exploding tips will be sent straight to your inbox as a PDF report.</p></div><div className="mt-8"><CTA label="Send me my report"/></div></div><img src={`${A}imgi_159_free-report-12-ways-to-fb-gold-1.png`} alt="12 Ways to Find Facebook Gold free report" className="mx-auto max-h-[650px] w-full object-contain" loading="lazy"/></div></section>
+
+      <section className="bg-ink px-5 py-24 text-paper"><div className="mx-auto max-w-6xl"><div className="flex flex-wrap items-end justify-between gap-6"><div><p className="mb-4 font-black uppercase text-primary">Client stories</p><Title dark>Hear It From Them</Title></div><div className="flex gap-2"><Button variant="outline" size="icon" className="rounded-none border-paper/30 bg-transparent text-paper" onClick={()=>setTestimonial((testimonial+testimonials.length-1)%testimonials.length)} aria-label="Previous testimonial"><ArrowLeft/></Button><Button variant="outline" size="icon" className="rounded-none border-paper/30 bg-transparent text-paper" onClick={()=>setTestimonial((testimonial+1)%testimonials.length)} aria-label="Next testimonial"><ArrowRight/></Button></div></div><div className="mt-12 grid overflow-hidden border border-paper/20 lg:grid-cols-[1.4fr_.6fr]"><div className="relative"><img src={`${A}${active.image}`} alt={`${active.name} testimonial`} className="aspect-video size-full object-cover"/><div className="absolute inset-0 flex items-center justify-center"><span className="grid size-16 place-items-center rounded-full bg-primary text-primary-foreground"><Play fill="currentColor"/></span></div></div><div className="flex flex-col justify-end p-8 sm:p-12"><div className="mb-auto flex gap-1 text-primary">{[1,2,3,4,5].map(x=><Star key={x} fill="currentColor"/>)}</div><p className="mt-12 text-sm font-black uppercase text-primary">Client testimonial</p><h3 className="display mt-2 text-4xl">{active.name}</h3><p className="mt-2 text-paper/60">{active.company}</p></div></div></div></section>
+
+      <section className="px-5 py-24"><div className="mx-auto max-w-5xl text-center"><p className="font-black uppercase text-muted-foreground">The 30% improvement guarantee</p><h2 className="display mt-5 text-6xl sm:text-8xl lg:text-9xl">We Beat It By <span className="text-primary [text-shadow:3px_3px_0_var(--ink)]">30%</span> Or Work For Free</h2><p className="mx-auto mt-8 max-w-3xl text-xl leading-9">We’ll design a new funnel, write new ads, and optimise performance until we beat your existing conversion rate, CPL, or ROAS by 30% within 90 days or we work for free until we do.</p><div className="mt-9"><CTA/></div></div></section>
+
+      <section id="contact" className="bg-primary px-5 py-24"><div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[1.1fr_.9fr]"><div><p className="mb-5 font-black uppercase">Free 30-minute strategy session</p><Title>What Will It Take To Explode Your Sales?</Title><div className="mt-9 space-y-5">{["A fully customised breakdown of the fastest path to profitable scale.","A clear plan for your Facebook ads, creative and funnel.","No high-pressure sales pitch masquerading as a strategy session."].map(x=><div key={x} className="flex gap-4 text-lg font-bold"><span className="grid size-7 shrink-0 place-items-center bg-ink text-paper"><Check className="size-4"/></span>{x}</div>)}</div></div><div className="bg-paper p-6 text-ink sm:p-10"><h3 className="display mb-7 text-4xl">Claim Your Session</h3><LeadForm/></div></div></section>
+
+      <section id="faq" className="px-5 py-24"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.7fr_1.3fr]"><div><img src={`${A}imgi_335_faq-emoji.png`} alt="Frequently asked questions" className="mb-8 size-24 object-contain" loading="lazy"/><Title>Facebook Ads FAQ</Title></div><Accordion type="single" collapsible className="border-t border-ink">{faqs.map(([q,a],i)=><AccordionItem key={q} value={`faq-${i}`} className="border-ink"><AccordionTrigger className="py-6 text-left text-xl font-black hover:no-underline">{q}</AccordionTrigger><AccordionContent className="pb-7 pr-10 text-lg leading-8 text-muted-foreground">{a}</AccordionContent></AccordionItem>)}</Accordion></div></section>
+
+      <section className="bg-ink px-5 py-24 text-paper"><div className="mx-auto max-w-5xl text-center"><Title dark>Download Your Free Report Now Before This Page Comes Down</Title><p className="mx-auto mt-7 max-w-2xl text-xl text-paper/70">The most ruthlessly effective platform for rapidly scaling businesses on planet earth.</p><div className="mt-9"><CTA label="Get the free report"/></div></div></section>
+    </main>
+    <footer className="bg-ink px-5 pb-10 text-paper"><div className="mx-auto max-w-7xl border-t border-paper/15 pt-12"><div className="grid gap-10 md:grid-cols-4"><div><img src={`${A}Uproas Logo.png`} alt="Uproas" className="size-24 object-contain brightness-0 invert"/><p className="mt-4 max-w-xs text-paper/55">The most ruthlessly effective platform for rapidly scaling businesses on planet earth.</p></div><div><p className="mb-4 font-black uppercase text-primary">Company</p><a className="block py-2 text-paper/70 hover:text-primary" href="#proof">Proof</a><a className="block py-2 text-paper/70 hover:text-primary" href="#cases">Case Studies</a></div><div><p className="mb-4 font-black uppercase text-primary">Services</p><a className="block py-2 text-paper/70 hover:text-primary" href="#strategy">Facebook Advertising</a><a className="block py-2 text-paper/70 hover:text-primary" href="#contact">Strategy Session</a></div><div><p className="mb-4 font-black uppercase text-primary">Partners</p><img src={`${A}imgi_338_footer-badges-keap-klaviyo-meta.png`} alt="Uproas platform partner badges" className="max-h-24 max-w-full object-contain object-left" loading="lazy"/></div></div><div className="mt-12 flex flex-wrap justify-between gap-4 border-t border-paper/15 pt-7 text-sm text-paper/45"><p>© 2026 Uproas. All rights reserved.</p><a href="#top" className="hover:text-primary">Back to top ↑</a></div></div></footer>
+  </div>;
 }
