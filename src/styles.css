@@ -35,28 +35,28 @@
 }
 
 :root {
-  --background: oklch(0.985 0 0);
-  --foreground: oklch(0.12 0 0);
+  --background: oklch(0.964 0.002 247.8);
+  --foreground: oklch(0.236 0.044 254.8);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.12 0 0);
+  --card-foreground: oklch(0.236 0.044 254.8);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.12 0 0);
-  --primary: oklch(0.88 0.24 124);
-  --primary-foreground: oklch(0.12 0 0);
-  --secondary: oklch(0.19 0 0);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.93 0 0);
-  --muted-foreground: oklch(0.43 0 0);
-  --accent: oklch(0.7 0.23 141);
-  --accent-foreground: oklch(0.08 0 0);
+  --popover-foreground: oklch(0.236 0.044 254.8);
+  --primary: oklch(0.579 0.227 262.8);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.253 0.046 254.5);
+  --secondary-foreground: oklch(0.964 0.002 247.8);
+  --muted: oklch(0.91 0.012 255);
+  --muted-foreground: oklch(0.417 0.082 267);
+  --accent: oklch(0.573 0.181 263.7);
+  --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.6 0.24 28);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.76 0 0);
-  --input: oklch(0.82 0 0);
-  --ring: oklch(0.88 0.24 124);
-  --ink: oklch(0.11 0 0);
-  --paper: oklch(0.97 0 0);
-  --signal: oklch(0.88 0.24 124);
+  --border: oklch(0.756 0.014 41.2);
+  --input: oklch(0.86 0.014 255);
+  --ring: oklch(0.579 0.227 262.8);
+  --ink: oklch(0.175 0.024 254.4);
+  --paper: oklch(0.964 0.002 247.8);
+  --signal: oklch(0.579 0.227 262.8);
 }
 
 * { box-sizing: border-box; border-color: var(--border); }
@@ -65,7 +65,7 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 button, a, input, textarea { letter-spacing: 0; }
 ::selection { background: var(--signal); color: var(--ink); }
 .display { font-family: var(--font-display); font-weight: 400; letter-spacing: 0; text-transform: uppercase; line-height: .92; }
-.paper-noise { background-image: radial-gradient(oklch(0.2 0 0 / .13) .6px, transparent .6px); background-size: 5px 5px; }
+.paper-noise { background-image: radial-gradient(oklch(0.253 0.046 254.5 / .13) .6px, transparent .6px); background-size: 5px 5px; }
 .slash-band { clip-path: polygon(0 17%,100% 0,100% 83%,0 100%); }
 .marquee-track { animation: marquee 36s linear infinite; width: max-content; }
 .marquee-track:hover { animation-play-state: paused; }
