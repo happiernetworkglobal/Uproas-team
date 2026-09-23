@@ -29,7 +29,7 @@ const UpworkLink = () => (
     Book on Upwork
   </a>
 );
-const CTA = ({ label = "Claim your free 30-minute strategy session" }: { label?: string }) => <span className="inline-flex flex-col items-center gap-3"><Button asChild size="lg" className="h-auto min-h-14 whitespace-normal rounded-none px-6 py-4 text-center text-sm font-black uppercase sm:text-base"><a href="#contact">{label}<ArrowRight /></a></Button><UpworkLink/></span>;
+const CTA = ({ label = "Claim your free 30-minute strategy session", href = UPWORK_URL }: { label?: string; href?: string }) => <span className="inline-flex flex-col items-center gap-3"><Button asChild size="lg" className="h-auto min-h-14 whitespace-normal rounded-none px-6 py-4 text-center text-sm font-black uppercase sm:text-base"><a href={href} target="_blank" rel="noopener noreferrer">{label}<ArrowRight /></a></Button><UpworkLink/></span>;
 
 function FacebookAgencyPage() {
   return <div id="top" className="bg-paper text-ink">
